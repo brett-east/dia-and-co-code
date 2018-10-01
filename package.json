@@ -1,0 +1,15 @@
+{
+  "name": "dia-and-co-challenge",
+  "version": "1.0.0",
+  "description": "Code challenge for Dia&Co",
+  "main": "index.js",
+  "author": "Brett East",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "react": "^16.5.2",
+    "redux": "^4.0.0",
+    "webpack": "^4.20.2"
+  }
+}
