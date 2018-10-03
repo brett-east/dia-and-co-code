@@ -14,5 +14,13 @@ module.exports = {
       test: /\.js$/,
       exclude: /node_modules/
     }]
-  }
+  },
+  resolve: {
+    alias: {
+      App: path.resolve(__dirname, 'app/'),
+      Components: path.resolve(__dirname, 'app/components/'),
+      Pages: path.resolve(__dirname, 'app/pages/')
+    }
+  },
+  devtool: 'source-map'
 };

@@ -1,8 +1,13 @@
 import React from 'react';
 
+import SearchBar from 'Components/search-bar';
+
 const Home = () => {
   return (
-    <h1>This is from the home page</h1>
+    <div>
+      <h1>This is from the home page</h1>
+      <SearchBar />
+    </div>
   );
 };
 
