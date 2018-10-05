@@ -3,6 +3,8 @@ import React from 'react';
 import SearchBar from 'Components/search-bar';
 import Results from 'Components/results';
 
+import uniqBy from 'lodash.uniqby';
+
 import searchRequest from 'App/search-request';
 import './styles.scss';
 
@@ -12,40 +14,63 @@ class Home extends React.Component {
 
     this.state = {
       articles: [],
-      totalResults: null
+      totalResults: null,
+      viewableResults: 0,
+      lastSortBy: '',
+      lastSearchedValue: '',
+      nextPage: 0
     };
   }
 
-  onSearch = (searchValue) => {
-    console.log(searchValue);
+  onSearch = ({ searchValue, sortBy, moreResults = false }) => {
+    const nextPage = moreResults ? this.state.nextPage + 1 : 1;
     searchRequest.get('/everything', { params: {
-      q: searchValue
+      q: searchValue,
+      sortBy,
+      page: nextPage
     }})
       .then((res) => {
-        console.log(res.data);
         const { articles, totalResults } = res.data;
-        this.setState(() => ({
-          articles,
-          totalResults
+        const filteredArticles = moreResults ? uniqBy([...this.state.articles, ...articles], 'url') :
+          uniqBy(articles, 'url');
+        this.setState((state) => ({
+          articles: filteredArticles,
+          totalResults,
+          viewableResults: state.viewableResults + articles.length,
+          lastSearchedValue: searchValue,
+          lastSortBy: sortBy,
+          nextPage: nextPage
         }));
       })
       .catch((err) => {
-        console.log('An error occured', err);
         this.setState(() => ({
           articles: [],
-          totalResults: null
+          totalResults: null,
+          viewableResults: 0
         }));
       });
   }
 
   render() {
+    const {
+      articles,
+      viewableResults,
+      totalResults,
+      lastSortBy,
+      lastSearchedValue
+    } = this.state;
     return (
       <div className="homepage">
         <SearchBar
           onSearch={this.onSearch}
         />
         <Results
-          articles={this.state.articles}
+          viewableResults={viewableResults}
+          totalResults={totalResults}
+          lastSearchedValue={lastSearchedValue}
+          lastSortBy={lastSortBy}
+          articles={articles}
+          onMoreResults={this.onSearch}
         />
       </div>
     );
