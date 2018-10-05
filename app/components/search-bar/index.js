@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import searchRequest from 'App/search-request';
-
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -15,12 +13,7 @@ class SearchBar extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state.searchValue);
-    searchRequest.get('/everything', { params: {
-      q: this.state.searchValue
-    }})
-      .then(res => console.log(res.data))
-      .catch(err => console.log('An error occured', err));
+    this.props.onSearch(this.state.searchValue);
   }
 
   onChange(e) {
