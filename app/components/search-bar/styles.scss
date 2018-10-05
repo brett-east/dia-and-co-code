@@ -1,0 +1,68 @@
+@import '../../styles/globals.scss';
+
+.search-bar {
+  background-color: #212032;
+  padding: 1rem;
+}
+
+form {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-grow: auto;
+}
+
+.search-bar__input {
+  background-color: #08020f;
+  border: none;
+  color: #fff;
+  height: 4rem;
+  font-size: 1.6rem;
+  padding-left: 2rem;
+  width: 100%;
+  &::-webkit-input-placeholder {
+    color: #ccc;
+  }
+  &::-moz-placeholder {
+    color: #ccc;
+  }
+  &:-ms-input-placeholder {
+    color: #ccc;
+  }
+  &:-moz-placeholder {
+    color: #ccc;
+  }
+}
+
+.search-bar__label {
+  flex-grow: 1;
+  margin-right: 2rem;
+  span {
+    width: 0px;
+    position: absolute;
+    left: -999px;
+  }
+}
+
+.search-bar__select {
+  background-color: #08020f;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  height: 4rem;
+  margin-right: 2rem;
+  padding-left: 2rem;
+  width: 16rem;
+}
+
+.search-bar__submit {
+  background-color: #e72a2a;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14rem;
+}

@@ -4,6 +4,7 @@ import SearchBar from 'Components/search-bar';
 import Results from 'Components/results';
 
 import searchRequest from 'App/search-request';
+import './styles.scss';
 
 class Home extends React.Component {
   constructor(props) {
@@ -39,8 +40,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>This is from the home page</h1>
+      <div className="homepage">
         <SearchBar
           onSearch={this.onSearch}
         />

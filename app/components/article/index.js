@@ -8,6 +8,9 @@ const Article = (props) => {
       <img src={article.urlToImage} alt="" />
       <p>{article.title}</p>
       <p>{article.description}</p>
+      <a href={article.url} target="_blank">
+        Read more
+      </a>
     </div>
   );
 };
